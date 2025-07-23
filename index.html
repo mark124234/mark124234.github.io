@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Portfolio:mark</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Manufacturing+Consent&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <section id="hero">
+            <h1>mark</h1>
+            <p>- occupation:student</p>
+        </section>
+        <section id="about">
+            <h1>About</h1>
+            <p>Hi, I'm Mark. I'm a student and a good person (or at least I try to be) ✌️.</p>
+            <p>Below are some of my interests!</p>
+            <ul id="about_list">
+                <li>video games (fav - stardew valley)</li>
+                <li>anime (fav - vinland saga)</li>
+                <li>coding (fav - css)</li>
+                <li id="special_li">fantasy</li>
+            </ul>
+        </section>
+        <section id="projects">
+            <h1>Projects Section:</h1>
+            <p>no projects 😭 will update once I have some</p>
+        </section>
+        <section id="contact">
+            <form action="https://github.com/mark124234">
+                <label>Email: mvas124234@gmail.com</label> <br>
+                <label>Phone: +44 7407 197735</label> <br>
+                <input class="form_button" role="button" type="submit" value="Go to GitHub">
+            </form>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.container');
+            const pages = document.querySelectorAll('.container section');
+            let currentPage = 0;
+            let isScrolling = false;
+
+            const handlePageChange = (direction) => {
+                if (isScrolling) return;
+
+                const newPage = currentPage + direction;
+                if (newPage < 0 || newPage >= pages.length) return;
+
+                isScrolling = true;
+                currentPage = newPage;
+
+                pages[currentPage].scrollIntoView();
+
+                // Add delay to prevent multiple wheel events happen.
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 1000);
+
+                return true;
+            };
+
+            // Handle wheel event for scroll
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                handlePageChange(e.deltaY > 0 ? 1 : -1);
+            });
+
+            // Handle keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    handlePageChange(1);
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    handlePageChange(-1);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
